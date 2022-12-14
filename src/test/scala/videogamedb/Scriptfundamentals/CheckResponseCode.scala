@@ -11,7 +11,7 @@ class CheckResponseCode extends Simulation{
   val scn = scenario(name="Check Response Code")
     .exec(http(requestName = "Get all games -1")
       .get("/videogame")
-      .check(status.is(expected = 200)))
+      .check(status.is(expected = 400)))
     .pause(5)
 
 
