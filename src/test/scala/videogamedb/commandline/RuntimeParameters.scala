@@ -4,12 +4,15 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
 class RuntimeParameters extends Simulation{
+
   val httpProtocol = http.baseUrl(url = "https://videogamedb.uk/api")
     .acceptHeader(value = "application/json")
 
-  def USERCOUNT = System.getProperty("USERS", "5").toInt
+  def USERCOUNT = System.getProperty("USERS", "10").toInt
 
-  def RAMPDURATION = System.getProperty("RAMP_DURATION", "10").toInt
+
+
+  def RAMPDURATION = System.getProperty("RAMP_DURATION", "30").toInt
 
   def TESTDURATION = System.getProperty("TEST_DURATION", "30").toInt
 
@@ -35,6 +38,7 @@ class RuntimeParameters extends Simulation{
     .forever {
       exec(getAllVideogames())
       exec(getSpecificVideogame())
+      exec(getAllVideogames())
 
     }
 
